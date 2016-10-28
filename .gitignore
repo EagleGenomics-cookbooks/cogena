@@ -1,0 +1,24 @@
+.vagrant
+Berksfile.lock
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+
+# Bundler
+Gemfile.lock
+bin/*
+.bundle/*
+
+.kitchen/
+.kitchen.local.yml
+
+# OS generated files #
+######################
+.DS_Store
+Icon?
+nohup.out
+ehthumbs.db
+Thumbs.db

@@ -1,0 +1,27 @@
+---
+driver:
+  name: docker
+  use_sudo: false
+  customize:
+    memory: 1024
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+  # sudo: false # if 'true' (default) inSpec will run tests as 'root', rather than 'kitchen'
+  format: doc
+  sudo_command: '. /etc/profile;'
+
+
+platforms:
+  - name: ubuntu-14.04
+    driver_config:
+      instance_name: cogena
+
+suites:
+  - name: default
+    run_list:
+      - recipe[cogena::default]
+    attributes:
