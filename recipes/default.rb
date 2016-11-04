@@ -20,7 +20,7 @@ elsif node['platform_family'] == 'rhel'
   end
 end
 
-r_package "optparse"
+r_package 'optparse'
 
 # install Bioconductor R packages
 execute 'Rscript install biocLite' do
