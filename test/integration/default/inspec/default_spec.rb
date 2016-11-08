@@ -23,3 +23,13 @@ end
 describe file('/usr/local/lib/R/site-library/STRINGdb/DESCRIPTION') do
   it { should be_file }
 end
+
+describe command('echo ${COGENA_VERSION:?missing}') do
+  its('exit_status') { should eq 0 }
+  its('stdout') { should_not match(/missing/) }
+end
+
+describe command('R --version') do
+  its('exit_status') { should eq 0 }
+  its('stdout') { should match(/R version 3.3.2/) }
+end
