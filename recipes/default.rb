@@ -38,6 +38,11 @@ execute 'Rscript install STRINGdb' do
   not_if { ::File.exist?('/usr/local/lib/R/site-library/STRINGdb/DESCRIPTION') }
 end
 
+execute 'Rscript install gridExtra' do
+  command 'Rscript -e "install.packages(\"gridExtra\")"'
+  not_if { ::File.exist?('/usr/local/lib/R/site-library/gridExtra') }
+end
+
 # HACK: get the cogena version set as env variable
 # execute a ruby block to update a node attribute
 # which is later used to set the env variable
