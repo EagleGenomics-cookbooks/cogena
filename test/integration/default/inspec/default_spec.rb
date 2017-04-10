@@ -31,5 +31,5 @@ end
 
 describe command('R --version') do
   its('exit_status') { should eq 0 }
-  its('stdout') { should match(/R version 3.3.2/) }
+  its('stdout') { should match(/R version 3.3.3/) }
 end
