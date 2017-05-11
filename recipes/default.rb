@@ -43,22 +43,6 @@ execute 'Rscript install gridExtra' do
   not_if { ::File.exist?('/usr/local/lib/R/site-library/gridExtra') }
 end
 
-# HACK: get the cogena version set as env variable
-# execute a ruby block to update a node attribute
-# which is later used to set the env variable
-ruby_block 'cogena_version_specification' do
-  block do
-    # tricky way to load this Chef::Mixin::ShellOut utilities
-    Chef::Resource::RubyBlock.send(:include, Chef::Mixin::ShellOut)
-    command_out = shell_out('Rscript -e \'packageVersion("cogena")\'')
-    result = command_out.stdout.match(/.+(\d\.\d\.\d+).+/)
-    version_number = result[1]
-    # note: for info level logs, the kitchen default (warn) needs to be overwritten in the .kitchen.yml file
-    Chef::Log.warn('Extracted cogena version number: ' + version_number)
-    node.default['cogena']['version'] = version_number
-  end
-  action :run
-end
 magic_shell_environment 'COGENA_VERSION' do
   value lazy { node['cogena']['version'] }
 end
