@@ -36,8 +36,4 @@ describe 'cogena::default' do
   it 'sets COGENA_VERSION variable' do
     expect(chef_run).to add_magic_shell_environment('COGENA_VERSION')
   end
-
-  it 'runs a ruby block to retrieve the cogena version' do
-    expect(chef_run).to run_ruby_block('cogena_version_specification')
-  end
 end
