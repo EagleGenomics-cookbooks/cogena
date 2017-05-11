@@ -41,6 +41,5 @@ end
 
 describe command('echo ${COGENA_VERSION}') do
   its('exit_status') { should eq 0 }
-  its('stdout') { should  match(/1.10.0/) }
+  its('stdout') { should match(/1.10.0/) }
 end
-
