@@ -31,7 +31,7 @@ end
 
 describe command('R --version') do
   its('exit_status') { should eq 0 }
-  its('stdout') { should match(/R version 3.4.0/) }
+  its('stdout') { should match(/R version 3.4.1/) }
 end
 
 describe command('Rscript -e \'packageVersion("cogena")\'') do
