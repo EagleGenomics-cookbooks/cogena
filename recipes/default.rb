@@ -22,12 +22,6 @@ end
 
 r_package 'optparse'
 
-# needed for STRINGdb - need to install from dev github repo as main install broken
-execute 'Rscript install igraph  ' do
-  command 'Rscript  -e "devtools::install_github(\"igraph/rigraph\")"'
-  # not_if { ::File.exist?('/usr/local/lib/R/site-library/BiocInstaller/DESCRIPTION') }
-end
-
 # install Bioconductor R packages
 execute 'Rscript install biocLite' do
   command 'Rscript -e "source(\"https://bioconductor.org/biocLite.R\")" -e "biocLite()"'
@@ -37,6 +31,12 @@ end
 execute 'Rscript install cogena' do
   command 'Rscript -e "source(\"https://bioconductor.org/biocLite.R\")" -e "biocLite(\"cogena\")" -e "library(cogena)"'
   not_if { ::File.exist?('/usr/local/lib/R/site-library/cogena/DESCRIPTION') }
+end
+
+# needed for STRINGdb - need to install from dev github repo as main install broken
+execute 'Rscript install igraph' do
+  command 'Rscript  -e "devtools::install_github(\"igraph/rigraph\")"'
+  # not_if { ::File.exist?('/usr/local/lib/R/site-library/BiocInstaller/DESCRIPTION') }
 end
 
 execute 'Rscript install STRINGdb' do
